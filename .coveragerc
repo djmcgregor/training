@@ -1,0 +1,22 @@
+# Configuration file for coverage.py
+# See https://coverage.readthedocs.io/en/latest/config.html for more
+[run]
+omit =
+    */__init__.py
+
+# Highlight partially covered branch statements (e.g. if/else). Default is False
+# branch = True
+
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines = 
+    # Don't consider debug related code
+    if debug
+    if params.debug
+    plt.
+    print
+
+    # Don't consider defensive assertion code
+    raise ValueError
+    raise AssertionError
+    assert
