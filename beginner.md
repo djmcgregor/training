@@ -161,6 +161,8 @@ As you walk though this practice session, frequently check the git log or git gr
         #           | remote name is 'origin'
         ``` 
     - Checkout a new branch, set the remote tracking branch, and view branches again
+        - When you create and checkout a new branch locally, you need to let Git know what remote branch should track the new local branch. For this, we have `git push --set-upstream <remote> <branch>`
+        - To avoid confusion, we usually set the local and remote branch names to be identical, but it is not required
         ```bash
         $ git checkout -b practice
         $ git push --set-upstream origin practice
