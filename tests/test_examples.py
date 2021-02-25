@@ -1,4 +1,4 @@
-""" Tests for the mistakes.py file """
+""" Tests for the examples submodule """
 import numpy as np
 from numpy.testing import assert_allclose
 

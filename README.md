@@ -16,13 +16,13 @@ Use this repo to play around with Git and GitHub and to better understand what e
     - Observe how Git tracks your changes
     - GitHub PR and Issue
 
-## [Moderate Sections](./moderate.md)
-- [Git commands](./moderate.md#git-commands)
-- [Merge conflicts](./moderate.md#merge-conflicts)
-- [Formatting code](./moderate.md#formatting-code)
-- [Versioning](./moderate.md#versioning)
-- [Referencing](./moderate.md#referencing)
-- [Multiple remotes](./moderate.md#multiple-remotes)
+## [Intermediate Sections](./intermediate.md)
+- [Git commands](./intermediate.md#git-commands)
+- [Merge conflicts](./intermediate.md#merge-conflicts)
+- [Formatting code](./intermediate.md#formatting-code)
+- [Versioning](./intermediate.md#versioning)
+- [Referencing](./intermediate.md#referencing)
+- [Multiple remotes](./intermediate.md#multiple-remotes)
 
 ## [Advanced Sections](./advanced.md)
 - [Virtual environments](./advanced.md#virtual-environment)

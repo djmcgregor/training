@@ -1,4 +1,4 @@
-# Moderate Tutorials
+# Intermediate Tutorials
 #### Sections
 - [Git commands](#git-commands)
 - [Merge conflicts](#merge-conflicts)

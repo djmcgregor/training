@@ -236,7 +236,7 @@ Code is typically packaged in order to be conveniently accessible to other proje
     1. [**pip install**](#pip-install): install `my_package` like you would any publicly hosted python package
         - Best solution if you do not plan on making any changes to `my_package`, but want to use its functions
     0. [**git subtree**](#git-subtree): copy source code into a subtree of your main project (i.e. a new folder at the root)
-        - Best if you want to co-develop `my_package` alongside your main project. Moderate Git proficiency is needed.
+        - Best if you want to co-develop `my_package` alongside your main project. Intermediate Git proficiency is needed.
     0. [**git submodule**](#git-submodule): similar to subtree, this is the original tool in Git 
         - Good if you want to make modifications but not necessarily push changes up to `my_project`. Git proficiency is definitely needed.
 
