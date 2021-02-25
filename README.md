@@ -4,36 +4,36 @@
 
 Use this repo to play around with Git and GitHub and to better understand what each command is really doing. I walk through beginner setup activities, as well as more advanced tools we use in the lab.
 
-## [Beginner Sections](./beginner.md)
-- [Introduction to Git and GitHub](./beginner.md#introduction)
-- [Initial setup](./beginner.md#initial-setup)
+## [Beginner Sections](./modules/beginner.md)
+- [Introduction to Git and GitHub](./modules/beginner.md#introduction)
+- [Initial setup](./modules/beginner.md#initial-setup)
     - Setup Git and GitHub
     - Fork this repo and create a local copy
     - Set up Visual Studio Code editor
-- [Basic Git commands](./beginner.md#git-commands)
-- [GitHub Workflow](./beginner.md#github-workflow)
-- [Practice](./beginner.md#practice)
+- [Basic Git commands](./modules/beginner.md#git-commands)
+- [GitHub Workflow](./modules/beginner.md#github-workflow)
+- [Practice](./modules/beginner.md#practice)
     - Observe how Git tracks your changes
     - GitHub PR and Issue
 
-## [Intermediate Sections](./intermediate.md)
-- [Git commands](./intermediate.md#git-commands)
-- [Merge conflicts](./intermediate.md#merge-conflicts)
-- [Formatting code](./intermediate.md#formatting-code)
-- [Versioning](./intermediate.md#versioning)
-- [Referencing](./intermediate.md#referencing)
-- [Multiple remotes](./intermediate.md#multiple-remotes)
+## [Intermediate Sections](./modules/intermediate.md)
+- [Git commands](./modules/intermediate.md#git-commands)
+- [Merge conflicts](./modules/intermediate.md#merge-conflicts)
+- [Formatting code](./modules/intermediate.md#formatting-code)
+- [Versioning](./modules/intermediate.md#versioning)
+- [Referencing](./modules/intermediate.md#referencing)
+- [Multiple remotes](./modules/intermediate.md#multiple-remotes)
 
-## [Advanced Sections](./advanced.md)
-- [Virtual environments](./advanced.md#virtual-environment)
-- [GitHub Secrets](./advanced.md#github-secrets)
-- [Continuous Integration](./advanced.md#continuous-integration)
+## [Advanced Sections](./modules/advanced.md)
+- [Virtual environments](./modules/advanced.md#virtual-environment)
+- [GitHub Secrets](./modules/advanced.md#github-secrets)
+- [Continuous Integration](./modules/advanced.md#continuous-integration)
     - Dependabot
     - GitHub Actions
     - Testing
     - Code Coverage
-- [SSH Authentication](./advanced.md#ssh-authentication)
-- [Packaging Code](./advanced.md#packaging-code)
+- [SSH Authentication](./modules/advanced.md#ssh-authentication)
+- [Packaging Code](./modules/advanced.md#packaging-code)
     - pip install
     - git subtree
     - git submodule

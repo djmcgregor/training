@@ -19,7 +19,7 @@ $ git tag
 ## Merge Conflicts
 Merging and conflicts are a common part of the Git experience. Conflicts generally arise when two people have changed the same lines in a file, or if the same file was modified on both branches involved in the merge. Luckily, resolving a merge conflict is often straightforward. Let's get familiar with solving merge conflicts by purposefully creating a conflict in this next section, and solving it three different ways.
 1. Checkout a new branch from the `main` branch and name it `conflict`
-0. In VSC, open the [`learning/mistakes.py`](./learning/mistakes.py) file and edit line 6
+0. In VSC, open the [`learning/mistakes.py`](../learning/mistakes.py) file and edit line 6
     ```python
     return ('Getting a PhD is easy')
     # update to say 
@@ -34,11 +34,11 @@ Merging and conflicts are a common part of the Git experience. Conflicts general
 0. In GitHub, open a PR `main <-- conflict`
     - You'll get a warning of the merge conflict. Create the PR anyway
 
-        ![merge_conflict](./assets/merge_conflict_1.PNG)
-        ![merge_conflict](./assets/merge_conflict_2.PNG)
+        ![merge_conflict](../assets/merge_conflict_1.PNG)
+        ![merge_conflict](../assets/merge_conflict_2.PNG)
     - Click on **Resolve conflicts** and you'll enter the GitHub editor. On the top, we have the incoming change from `conflict`, and below the `======` we have the current change from `main`
 
-        ![merge_conflict](./assets/merge_conflict_3.PNG)
+        ![merge_conflict](../assets/merge_conflict_3.PNG)
     - To resolve, simply pick one version, or a combination of the two, and delete the extra lines. To finish, click **Mark as resolved** and then **Merge**
     - Back in the PR, you can see there is a new merge commit that resolves the conflict
 0. Close the PR without merging the PR. Now we want to undo all our merge work and try again another way
@@ -63,7 +63,7 @@ Merging and conflicts are a common part of the Git experience. Conflicts general
         ```
     - In VSC, the **Source Control** tab shows our file under "Merge Changes" with a "C" for "Conflict." Clicking on it to view the conflict, we see
 
-        ![merge_conflict](./assets/merge_conflict_4.PNG)
+        ![merge_conflict](../assets/merge_conflict_4.PNG)
     - We can manually edit like before, or click one of the options at the top of the merge conflict. `Accept Current Change` will save `Getting a PhD is simple` and discard the rest. You can explore the other options.
     - You can save your changes, edit the commit message in VSC if desired, and commit the merge by clicking the check mark. *But don't click just yet!*
 0. Let's see if we can fix this entirely in Git
@@ -86,12 +86,12 @@ Merging and conflicts are a common part of the Git experience. Conflicts general
         ```    
 ---
 ## Formatting Code
-Code formatting is important for code readability. As you code over time, and especially when you develop with multiple people, a code formatter will make it simple to keep consistent formatting across all your documents. Personally, I like [YAPF](https://pypi.org/project/yapf/) (yet another python formatter). The "knob settings" I use can be found in the [`.style.yapf`](./.style.yapf) file.
+Code formatting is important for code readability. As you code over time, and especially when you develop with multiple people, a code formatter will make it simple to keep consistent formatting across all your documents. Personally, I like [YAPF](https://pypi.org/project/yapf/) (yet another python formatter). The "knob settings" I use can be found in the [`.style.yapf`](../.style.yapf) file.
 
 1. Install yapf
     - Type ``Ctrl + ` `` (thats the backtick character) to open the terminal in VSC
     - In the terminal, type `pip install yapf`
-    - Close the terminal and open [`learning/mistakes.py`](./learning/mistakes.py)
+    - Close the terminal and open [`learning/mistakes.py`](../learning/mistakes.py)
 0. Run the formatter
     - Type `Shift + Alt + F` to run the formatter
         - Alternatively type `Ctrl + Shift + P` to bring up the command palette, and search for "Format Document"

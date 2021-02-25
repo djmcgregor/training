@@ -233,14 +233,14 @@ As you walk though this practice session, frequently check the git log or git gr
 0. Create a GitHub Issue
     - You can do this the traditional way through GitHub as explained [here](https://docs.github.com/en/github/managing-your-work-on-github/creating-an-issue) 
     - Let's explore a convenient alternative directly in VSC using the "GitHub Pull Requests and Issues" extension
-    - In VSC, open [learning/mistakes.py](./learning/mistakes.py). Notice the `# TODO:` tag on line 25. This is one of the flags for the extension.
+    - In VSC, open [learning/mistakes.py](../learning/mistakes.py). Notice the `# TODO:` tag on line 25. This is one of the flags for the extension.
     - Click on `TODO` and hover. You should see a yellow lightbulb appear to the left. Click on the lightbulb and select "Create GitHub Issue"
     
-        ![vsc_github_issue](./assets/vsc_github_issue_1.PNG)
+        ![vsc_github_issue](../assets/vsc_github_issue_1.PNG)
     - When the "Create Issue" dialogue pops up, you can choose to edit the description and add more information such as assigning specific people or labels to the issue.
     
-        ![vsc_github_issue](./assets/vsc_github_issue_2.PNG)
+        ![vsc_github_issue](../assets/vsc_github_issue_2.PNG)
     - Finish creating the issue (click check mark and save changes). GitHub will now be updated with a new issue, and the extension automatically updates the `# TODO` tag with the issue number. Now your issue is linked to the code, and the code references the issue directly. Commit this update as you see appropriate.
     
-        ![vsc_github_issue](./assets/vsc_github_issue_3.PNG)
+        ![vsc_github_issue](../assets/vsc_github_issue_3.PNG)
     - You can explore more on the **GitHub** tab in VSC

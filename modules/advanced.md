@@ -87,12 +87,12 @@ Continuous Integration (CI) refers to the process of automating the integration 
 
 #### Dependabot
 Dependabot is a piece of software that automatically detects when the packages you use in your code (specified in the requirements file) release updated versions. Dependabot will automatically generate PRs (can get a bit annoying) to update your package requirements to ensure your code is using the latest package versions. Read more fro [GitHub's blog post](https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/).
-1. An example [file](./github/dependabot.yml) is included in this repo
+1. An example [file](../.github/dependabot.yml) is included in this repo
     - The update interval is set to `monthly`, but you have many options
 0. A thorough list of options can be found [here](https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates)
 
 #### GitHub Actions
-In this repo, there is an example GitHub Actions workflow [YAML file](./.github/workflows/python-app.yml). We will walk through its structure, but I strongly encourage you to read more from GitHub on [Actions](https://docs.github.com/en/actions/reference) or [Python testing](https://docs.github.com/en/actions/guides/building-and-testing-python) specifically.
+In this repo, there is an example GitHub Actions workflow [YAML file](../.github/workflows/python-app.yml). We will walk through its structure, but I strongly encourage you to read more from GitHub on [Actions](https://docs.github.com/en/actions/reference) or [Python testing](https://docs.github.com/en/actions/guides/building-and-testing-python) specifically.
 
 1. The workflow YAML file
     - The [docs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategy) provide a far more complete explanation of the syntax than I will. But here's the TLDR
@@ -141,7 +141,7 @@ In this repo, there is an example GitHub Actions workflow [YAML file](./.github/
         Results of all tests and summary of code coverage (number of lines found, number of lines not covered explicitly by tests, and % coverage). Take this with a grain of salt, as % coverage is not the ultimate guide to good code. 100% coverage can still have bad code if the tests are poorly designed. But in general, it is a good guide / sanity check.
 0. Adding a badge
     - If you want to add a status badge for your GitHub workflow, you can follow this [guide](https://docs.github.com/en/actions/managing-workflow-runs/adding-a-workflow-status-badge)
-    - See this repo's [`README.md`](./README.md) for an example
+    - See this repo's [`README.md`](../README.md) for an example
 
 #### Testing
 When we first write code, most of us also quickly write up some basic test cases to make sure things are working. Saving these test cases as "unit tests" can save you some time down the road.
@@ -152,7 +152,7 @@ When we first write code, most of us also quickly write up some basic test cases
 
 1. Setup
     - I prefer to store my tests in a separate `tests/` folder at the root of my project, but there are arguments for distributing tests within your code
-    - I have included a sample test as an example at [`./tests/test_mistakes.py`](./tests/test_mistakes.py)
+    - I have included a sample test as an example under [`tests/test_mistakes.py`](../tests/test_mistakes.py)
     - The `__init__.py` file is needed for import reasons
 0. Naming convention
     - It is common to use `pytest` to run your test suite. You can discover more about `pytest` in the [docs](https://docs.pytest.org/en/stable/contents.html)
@@ -243,8 +243,8 @@ Code is typically packaged in order to be conveniently accessible to other proje
 #### pip install
 Projects that are being packaged must have a `setup.py` file at the root of the directory. This file contains information for installing the package on your machine, as well as package metadata. When the package is published publicly, it also serves as the communication point for [PyPi](https://pypi.org/), which hosts public python packages that can be installed using `pip`.
 - For information on packaging, see this [guide](https://packaging.python.org/guides/distributing-packages-using-setuptools/) and this [tutorial](https://python-packaging.readthedocs.io/en/latest/minimal.html)
-- I have included a simple [`setup.py`](./setup.py) file for this tutorial repo that will get you started
-    - I like to only store the `__version__` number in the base [`__init__.py`](./learning/__init__.py) file. This way, there is only one line to update whenever a new version is released. There are a few lines of code to pull this value from the `__init__.py` file into the `setup.py` file
+- I have included a simple [`setup.py`](../setup.py) file for this tutorial repo that will get you started
+    - I like to only store the `__version__` number in the base [`__init__.py`](../learning/__init__.py) file. This way, there is only one line to update whenever a new version is released. There are a few lines of code to pull this value from the `__init__.py` file into the `setup.py` file
     - The project `name` parameter is what people will use to `pip install`, while the `packages` parameter is what people will `import` in their python code
         - These two do not need to be identical (e.g. opencv-python and cv2, or scikit-image and skimage), but having different names could lead to user confusion. I recommend you keep things simple
         - In this training example, I went the confusing route to demonstrate the possibility. My project name is `TrainingTutorials` while the package name is `learning`, meaning the functions can be imported under the name `learning`
@@ -333,7 +333,7 @@ Git subtree is an advanced technique that enables the co-development of a projec
 0. Setup remote tracking to training (I'll call it `train_remote` here to avoid confusion)
     - *Suggested*: Use the `-f` option to `git fetch train_remote` immediately after setting up the remote
     - *Suggested*: Use the `--no-tags` option to not import tags from the remote. This will save you any confusion if you have similarly named tags in your main project
-0. Add and merge the subtree from this remote (in the example, I create a subtree folder `./practice/`)
+0. Add and merge the subtree from this remote (in the example, I create a subtree folder `practice/` at the project's root)
     - *Suggested*: Use the `--squash` option to condense all the training commits into one commit in your main project history
     - *Optional*: Edit the merge message. To accept the auto generated message, type `:wq` ([VIM cheat sheet](https://www.keycdn.com/blog/vim-commands))
     - *Optional*: Use `-m` or `--message` to specify a commit message for the merge commit (works with add, merge, and pull)
