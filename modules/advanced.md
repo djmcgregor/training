@@ -1,5 +1,6 @@
 # Advanced Tutorials
 #### Sections
+- [Git commands](#git-commands)
 - [Virtual environments](#virtual-environment)
 - [GitHub Secrets](#github-secrets)
 - [Continuous Integration](#continuous-integration)
@@ -12,8 +13,19 @@
     - pip install
     - git subtree
     - git submodule
----
 
+TODO: explain squash? [example](https://gitbetter.substack.com/p/how-to-squash-git-commits#:~:text=Git%20squash%20is%20a%20technique%20that%20helps%20you,it%20to%20a%20small%20number%20of%20meaningful%20commits.)
+
+---
+## Git Commands
+By now, you can probably look into Git commands on your own. Some useful commands to get familiar with include
+```bash
+$ git rebase
+$ git reset
+# git squash
+```
+
+---
 ## Virtual Environment
 A virtual environment is generally recommended for each independent development project you work on. It allows you to isolate specific package dependencies and versions of code that your project utilizes. This way, if `project-a` requires "some-package" v1.2.3 and `project-b` requires "some-package" v2.0.1, you can simply activate and deactivate virtual environments to easily switch between development on `project-a` and `project-b` without worrying if "some-package" has been overwritten with an earlier or later release.
 

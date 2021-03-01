@@ -9,7 +9,6 @@
 - [Multiple remotes](#multiple-remotes)
 
 TODO: explain git commands each further. Perhaps some practice demos. Deleting remote branches?
-TODO: explain squash? [example](https://gitbetter.substack.com/p/how-to-squash-git-commits#:~:text=Git%20squash%20is%20a%20technique%20that%20helps%20you,it%20to%20a%20small%20number%20of%20meaningful%20commits.)
 TODO: private functions, `__X__` functions, and `__init__.py`
 
 ---
@@ -19,9 +18,60 @@ By now, you can probably look into Git commands on your own. Some useful command
 $ git stash
 $ git cherry-pick   # quite easy to use in VSC
 $ git tag           # also easy in VSC
-$ git rebase
-$ git reset
 ```
+**git stash**
+- Temporarily stash changes to your working copy of code so you can work on something else, and later re-apply the stashed changes. The idea here is that you have made changes but are not ready to commit them just yet. Here is a helpful [guide](https://www.atlassian.com/git/tutorials/saving-changes/git-stash).
+
+**git cherry-pick**
+- Select a specific commit and append it to the current working `HEAD`. This can be useful if you want to grab a code update from one branch and apply it to another. Use with restraint however, as cherry-picking generates duplicate commits and results in a redundant history. Here is a helpful [guide](https://www.atlassian.com/git/tutorials/cherry-pick).
+- In some cases, `git rebase` may be more appropriate -- it is covered in the [advanced module](./advanced.md).
+
+**git tag**
+- Mark points in history as important so that referencing them is easier than a long SHA-hash. It is often used to mark releases (1.3.1) or important features or changes for discussion (bug xyz, issue136)
+- There are two types of tags
+    - *Annotated tags should be used when in doubt. They include a commit message (or annotation) and contain meta information about who created the tag, the time, etc. If you want other developers to view the tag, it should be annotated.
+    - Lightweight tags are appropriate for private use. Expect to only use them for private reference, as they simply point to the tagged commit and do not contain any meta data.
+- Creating tags is straightforward. From the VSC **Source Control** tab, open the git graph, right click on the desired commit, and select `Add tag`. You will have options for annotated or lightweight, and can specify the tag name and message (if annotated). Alternatively, you can create tags directly in Git
+    ```bash
+    # add annotated tag
+    $ git tag -a <tag_name> -m '<message>' <commit_hash>
+    #         ^  ^          ^              ^ recommend 8 characters
+    #         |  |          | just like a 'git commit'
+    #         |  | tag name, such as 1.3.1
+    #         | indicates you want an annotated tag
+
+    # add lightweight tag
+    $ git tag <tag_name> <commit_hash>
+    ```
+- Like branches, tags are local unless explicitly pushed to a remote 
+    ```bash
+    $ git push <remote> <tag_name>  # push a tag to a remote, such as 'origin'
+    $ git push <remote> --tags      # push ALL tags to remote
+    ```
+    - Note `git push` alone does NOT transfer tags
+    - While `git fetch` and `git pull` do automatically retrieve tags
+- If for some reason, you wish to delete a tag (use with caution)
+    ```bash
+    $ git push --delete <remote> <tag_name>
+    $ git push -d <remote> <tag_name>
+    ```
+- Other potentially useful commands related to tags
+    ```bash
+    # list tags
+    $ git tag
+    $ git tag --list
+    $ git tag -l
+
+    # list tags with regex beginning with 'v2'
+    $ git tag -l 'v2*'  # beginning with 'v2'
+    $ git tag -l '*v2'  # ending with 'v2'
+    $ git tag -l '*v2*' # containing 'v2'
+    #                ^ wildcard character
+    
+    # list tags with annotations
+    $ git tag -l -n
+    ```
+---
 ## Interactive Staging
 In the event that you have made several changes to a single file, but only want to commit some of the changes, you can use interactive staging. I recommend doing this in VSC (or another Git GUI tool), but Git itself has this functionality.
 

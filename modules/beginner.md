@@ -32,6 +32,7 @@ Git commands follow Linux syntax, but don't let that intimidate you. Git is fair
     - Code on your personal machine is referred to as "local" and their branches as "local branches"
     - The third copy of code bridges the gap between local and remote branches, and is called "remote-tracking." Git constantly compares code on *local* branches to *remote-tracking* branches to see if there are any changes. If there are changes to a *remote* branch itself, such as changes made by a collaborator, we have to physically update the *remote-tracking* branch on our machine with `git fetch`, or equivalent, in order to see those changes in Git. This will become more clear as we work with Git.
     - *Remote-tracking* and *remote* branches are often assumed to be identical and just referred to as "remotes." I won't place too much emphasis on their difference moving forward. However, knowing this distinction should help if you ever find a situation where the *remote* and *remote-tracking* branches are not identical. As a developer, it is up to you to keep them synchronized. If you forget, Git will gently remind you.
+- A local pointer called `HEAD` points to the last commit you made to the current branch, or the last commit that was checked out into your working directory. In simple terms, it indicates where the current code you are looking at falls in the Git history.
 
 #### GitHub
 GitHub is just one of many third party companies offering a graphical interface for Git repositories. Some of the features GitHub offers include repository hosting, pull requests, issue tracking, discussions, and automated workflows. If you are accessing this playground, then I will assume you already setup a GitHub account.
@@ -90,7 +91,7 @@ This is an excellent [Guide](https://docs.github.com/en/github/getting-started-w
     - On the left hand sidebar, select the **Source Control** tab. A new menu should appear. At the top, click on the **View Git Graph (git log)** button
     - You should now see a pretty graph of the history of this repo. Each dot represents a commit, and if you click on it, you can see all the associated metadata
         - Commit message: short explanation of what changed (use present tense)
-        - Commit hash: very long, but unique ID for the commit. We can reference this hash later
+        - Commit hash or SHA: very long, but unique ID for the commit. We can reference this hash later
         - Username and email of the commit author
         - Commit time
         - List of files changed
