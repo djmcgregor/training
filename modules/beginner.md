@@ -12,10 +12,26 @@
     - GitHub PR
 ---
 ## Introduction
+As a general note, code examples within these tutorials use the `<...>` notation to indicate information that needs to be replaced with your specific information. For example, in the initial setup I would replace
+```bash
+$ git config --global user.name "<Your Name>"
+```
+with
+```bash
+$ git config --global user.name "Davis McGregor"
+```
+Notice I keep the quotes, but lose the brackets.
+
 #### Git
 Git is an open source version control system for code that enables seamless parallel development across numerous users. It's similar to a combination of "track changes" and "compare documents" in a word processor, with the additional functionality of storing messages at each save point (aka commit). A collection of documents managed with Git is called a repository (or repo for short).
 
 Git commands follow Linux syntax, but don't let that intimidate you. Git is fairly easy to learn, and is extremely powerful. However, with great power comes the potential for great mistakes. Luckily, most mistakes are recoverable with some effort. But that's what this playground is all about. Make mistakes, learn from them, and restart the playground as needed. 
+
+- It may be helpful to understand that Git operates with three images, or copies, of code:
+    - Repositories stored online, such as with GitHub, are referred to as "remotes" and their branches as "remote branches"
+    - Code on your personal machine is referred to as "local" and their branches as "local branches"
+    - The third copy of code bridges the gap between local and remote branches, and is called "remote-tracking." Git constantly compares code on *local* branches to *remote-tracking* branches to see if there are any changes. If there are changes to a *remote* branch itself, such as changes made by a collaborator, we have to physically update the *remote-tracking* branch on our machine with `git fetch`, or equivalent, in order to see those changes in Git. This will become more clear as we work with Git.
+    - *Remote-tracking* and *remote* branches are often assumed to be identical and just referred to as "remotes." I won't place too much emphasis on their difference moving forward. However, knowing this distinction should help if you ever find a situation where the *remote* and *remote-tracking* branches are not identical. As a developer, it is up to you to keep them synchronized. If you forget, Git will gently remind you.
 
 #### GitHub
 GitHub is just one of many third party companies offering a graphical interface for Git repositories. Some of the features GitHub offers include repository hosting, pull requests, issue tracking, discussions, and automated workflows. If you are accessing this playground, then I will assume you already setup a GitHub account.
@@ -62,9 +78,9 @@ This is an excellent [Guide](https://docs.github.com/en/github/getting-started-w
         - There is no need to set up an `upstream` remote right now
 
 #### Code Editor
-7. Setup your editor of choice. Personally, I like developing in [Visual Studio Code](https://code.visualstudio.com/) (VSC).
+7. Setup your editor of choice. Personally, I like developing in [Visual Studio Code](https://code.visualstudio.com/) (VSC), but there are many options.
     - VSC has a ton of convenient keyboard shortcuts, and you can create even more custom ones. [Cheat sheet](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
-0. If using VSC, install the following extensions to get started
+0. If using VSC, I recommend installing the following extensions to get started
     - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) - great for seeing repo history
     - [GitHub Pull Requests and Issues](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) - great for creating issues from key phrases such as `# TODO`
     - [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced) - preview markdown right in VSC
@@ -90,10 +106,11 @@ There are a couple git commands that are necessary to understand as you get star
 - `git clone <url>`
     - Create a local copy of a remote repository
 - `git fetch`
-    - Update your remote tracker with all changes made to the GitHub repository
+    - Update your remote-tracking branches with all changes made to the remote GitHub repository
+    - Preview changes that have been made to the remote before incorporating them into your local code
     - I rarely use this
 - `git merge` or `git merge <branch name>`
-    - Combines remote tracking branch or specified local branch into the current local branch
+    - Combines remote-tracking branch or specified local branch into the current local branch
     - I rarely use this
 - `git pull`
     - Equivalent to running `git fetch` followed by `git merge`
@@ -111,9 +128,9 @@ There are a couple git commands that are necessary to understand as you get star
 
 **Use Everyday**
 - `git status`
-    - See the status of your repo. Which files are new, deleted, have modification, or are staged for committing. Also see if your local copy of the code is behind the remote repo it tracks (requires a `git fetch`).
+    - See the status of your repo. Which files are new, deleted, have modification, or are staged for committing. Also see if your local copy of the code is behind the remote-tracking code (a recent `git fetch` ensures the remote-tracking code is up to date with the remote code).
 - `git branch` or `git branch -a`
-    - List of local branches or list of all local and remote branches
+    - List of local branches or list of all local and remote-tracking branches
 - `git checkout -b <new branch name>` or `git checkout <existing branch name>`
     - Create and/or switch to a new branch
 - I typically run `git add`, `git commit` and `git push` commands directly in VSC under the **Source Control** tab
