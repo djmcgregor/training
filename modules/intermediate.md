@@ -1,20 +1,51 @@
 # Intermediate Tutorials
 #### Sections
 - [Git commands](#git-commands)
+- [Interactive staging](#interactive-staging)
 - [Merge conflicts](#merge-conflicts)
 - [Formatting code](#formatting-code)
 - [Versioning](#versioning)
 - [Referencing](#referencing)
 - [Multiple remotes](#multiple-remotes)
+
+TODO: explain git commands each further. Perhaps some practice demos. Deleting remote branches?
+TODO: explain squash? [example](https://gitbetter.substack.com/p/how-to-squash-git-commits#:~:text=Git%20squash%20is%20a%20technique%20that%20helps%20you,it%20to%20a%20small%20number%20of%20meaningful%20commits.)
+TODO: private functions, `__X__` functions, and `__init__.py`
+
 ---
 ## Git Commands
 By now, you can probably look into Git commands on your own. Some useful commands to get familiar with include
 ```bash
+$ git stash
 $ git cherry-pick   # quite easy to use in VSC
-$ git reset
+$ git tag           # also easy in VSC
 $ git rebase
-$ git tag
+$ git reset
 ```
+## Interactive Staging
+In the event that you have made several changes to a single file, but only want to commit some of the changes, you can use interactive staging. I recommend doing this in VSC (or another Git GUI tool), but Git itself has this functionality.
+
+**In VSC**
+Navigate to the **Source control** tab and click on the file you wish to interactively stage. Right click on a code hunk and select `stage selected ranges` or another appropriate option.
+
+**In Git**
+```bash
+$ git add -i
+# or
+$ git add --interactive
+```
+Then navigate the in-terminal menu to select individual files and lines of code to stage. You can select a command option by typing either the number or blue letter for the command. The available options will include
+```
+1: status           # same as 'git status'
+2: update           # pick modified files to 'git add'
+3: revert           # pick files to remove from staging
+4: add untracked    # pick untracked fils to 'git add'
+5: patch            # pick parts of files to 'git add'
+6: diff             # same as 'git diff'
+7: quit             # exit interactive mode
+8: help             # see some help options
+```
+
 ---
 ## Merge Conflicts
 Merging and conflicts are a common part of the Git experience. Conflicts generally arise when two people have changed the same lines in a file, or if the same file was modified on both branches involved in the merge. Luckily, resolving a merge conflict is often straightforward. Let's get familiar with solving merge conflicts by purposefully creating a conflict in this next section, and solving it three different ways.
