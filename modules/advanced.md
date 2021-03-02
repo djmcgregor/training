@@ -1,6 +1,8 @@
 # Advanced Tutorials
 #### Sections
 - [Git commands](#git-commands)
+- [Underscores in Python](#underscores-in-python)
+- [Code Organization](#code-organization)
 - [Virtual environments](#virtual-environment)
 - [GitHub Secrets](#github-secrets)
 - [Continuous Integration](#continuous-integration)
@@ -15,6 +17,8 @@
     - git submodule
 
 TODO: explain squash? [example](https://gitbetter.substack.com/p/how-to-squash-git-commits#:~:text=Git%20squash%20is%20a%20technique%20that%20helps%20you,it%20to%20a%20small%20number%20of%20meaningful%20commits.)
+TODO: explain git commands each further. Perhaps some practice demos. Deleting remote branches?
+TODO: code organization and `__init__.py`
 
 ---
 ## Git Commands
@@ -24,6 +28,28 @@ $ git rebase
 $ git reset
 # git squash
 ```
+---
+## Underscores in Python
+In Python, the underscore `_` has four primary uses. You can read more [online](https://hackernoon.com/understanding-the-underscore-of-python-309d1a029edc).
+1. Storing the value of the last expression in the Python interpreter. Similar to the `Ans` button on a calculator
+    - Limited use cases in my opinion
+0. Represent a variable we do not care about
+    ```python
+    x, _, y = (1, 2, 3) # x=1, y=2
+    ```
+    - Technically `_` will be a variable and store a value, but by convention its use tells other developers that the value does not matter
+0. Private functions have a `_single_leading_underscore`
+    - Again, this is mostly a convention. Sometimes called a "weak internal use indicator"
+    - Functions beginning with a single underscore will not be imported when running `from <package> import *`. However, they can be imported explicitly by other packages
+    - As a package developer, it is your responsibility not to include these private functions in the `__init__.py` `__all__` section. More on this later
+0. Magic methods have `double_leading_and_trailing_underscore`
+    - This convention is reserved for special Python variables and methods that provide special syntactic features or do special things
+    - I do not recommend naming any variables with this convention. The rare exception of this is creating a `__version__` variable when you release your own code. More on that [below](#packaging-code).
+
+---
+## Code Organization
+
+#### More on `__init__.py`
 
 ---
 ## Virtual Environment

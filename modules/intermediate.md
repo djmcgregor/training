@@ -1,76 +1,14 @@
 # Intermediate Tutorials
 #### Sections
-- [Git commands](#git-commands)
 - [Interactive staging](#interactive-staging)
+- [Git commands](#git-commands)
+- [Detached HEAD](#detached-head)
 - [Merge conflicts](#merge-conflicts)
 - [Formatting code](#formatting-code)
 - [Versioning](#versioning)
 - [Referencing](#referencing)
 - [Multiple remotes](#multiple-remotes)
 
-TODO: explain git commands each further. Perhaps some practice demos. Deleting remote branches?
-TODO: private functions, `__X__` functions, and `__init__.py`
-
----
-## Git Commands
-By now, you can probably look into Git commands on your own. Some useful commands to get familiar with include
-```bash
-$ git stash
-$ git cherry-pick   # quite easy to use in VSC
-$ git tag           # also easy in VSC
-```
-**git stash**
-- Temporarily stash changes to your working copy of code so you can work on something else, and later re-apply the stashed changes. The idea here is that you have made changes but are not ready to commit them just yet. Here is a helpful [guide](https://www.atlassian.com/git/tutorials/saving-changes/git-stash).
-
-**git cherry-pick**
-- Select a specific commit and append it to the current working `HEAD`. This can be useful if you want to grab a code update from one branch and apply it to another. Use with restraint however, as cherry-picking generates duplicate commits and results in a redundant history. Here is a helpful [guide](https://www.atlassian.com/git/tutorials/cherry-pick).
-- In some cases, `git rebase` may be more appropriate -- it is covered in the [advanced module](./advanced.md).
-
-**git tag**
-- Mark points in history as important so that referencing them is easier than a long SHA-hash. It is often used to mark releases (1.3.1) or important features or changes for discussion (bug xyz, issue136)
-- There are two types of tags
-    - *Annotated tags should be used when in doubt. They include a commit message (or annotation) and contain meta information about who created the tag, the time, etc. If you want other developers to view the tag, it should be annotated.
-    - Lightweight tags are appropriate for private use. Expect to only use them for private reference, as they simply point to the tagged commit and do not contain any meta data.
-- Creating tags is straightforward. From the VSC **Source Control** tab, open the git graph, right click on the desired commit, and select `Add tag`. You will have options for annotated or lightweight, and can specify the tag name and message (if annotated). Alternatively, you can create tags directly in Git
-    ```bash
-    # add annotated tag
-    $ git tag -a <tag_name> -m '<message>' <commit_hash>
-    #         ^  ^          ^              ^ recommend 8 characters
-    #         |  |          | just like a 'git commit'
-    #         |  | tag name, such as 1.3.1
-    #         | indicates you want an annotated tag
-
-    # add lightweight tag
-    $ git tag <tag_name> <commit_hash>
-    ```
-- Like branches, tags are local unless explicitly pushed to a remote 
-    ```bash
-    $ git push <remote> <tag_name>  # push a tag to a remote, such as 'origin'
-    $ git push <remote> --tags      # push ALL tags to remote
-    ```
-    - Note `git push` alone does NOT transfer tags
-    - While `git fetch` and `git pull` do automatically retrieve tags
-- If for some reason, you wish to delete a tag (use with caution)
-    ```bash
-    $ git push --delete <remote> <tag_name>
-    $ git push -d <remote> <tag_name>
-    ```
-- Other potentially useful commands related to tags
-    ```bash
-    # list tags
-    $ git tag
-    $ git tag --list
-    $ git tag -l
-
-    # list tags with regex beginning with 'v2'
-    $ git tag -l 'v2*'  # beginning with 'v2'
-    $ git tag -l '*v2'  # ending with 'v2'
-    $ git tag -l '*v2*' # containing 'v2'
-    #                ^ wildcard character
-    
-    # list tags with annotations
-    $ git tag -l -n
-    ```
 ---
 ## Interactive Staging
 In the event that you have made several changes to a single file, but only want to commit some of the changes, you can use interactive staging. I recommend doing this in VSC (or another Git GUI tool), but Git itself has this functionality.
@@ -95,7 +33,97 @@ Then navigate the in-terminal menu to select individual files and lines of code 
 7: quit             # exit interactive mode
 8: help             # see some help options
 ```
+---
+## Git Commands
+By now, you can probably look into Git commands on your own. Some useful commands to get familiar with include
+```bash
+$ git stash
+$ git cherry-pick   # quite easy to use in VSC
+$ git tag           # also easy in VSC
+```
+**git stash**
+- Temporarily stash changes to your working copy of code so you can work on something else, and later re-apply the stashed changes. The idea here is that you have made changes but are not ready to commit them just yet. Here is a helpful [guide](https://www.atlassian.com/git/tutorials/saving-changes/git-stash).
 
+**git cherry-pick**
+- Select a specific commit and append it to the current working `HEAD`. This can be useful if you want to grab a code update from one branch and apply it to another. Use with restraint however, as cherry-picking generates duplicate commits and results in a redundant history. Here is a helpful [guide](https://www.atlassian.com/git/tutorials/cherry-pick).
+- In some cases, `git rebase` may be more appropriate -- it is covered in the [advanced module](./advanced.md).
+
+**git tag**
+- Mark points in history as important so that referencing them is easier than a long SHA-hash. It is often used to mark releases (1.3.1) or important features or changes for discussion (bug xyz, issue136)
+- There are two types of tags
+    - *Annotated tags should be used when in doubt. They include a commit message (or annotation) and contain meta information about who created the tag, the time, etc. If you want other developers to view the tag, it should be annotated.
+    - Lightweight tags are appropriate for private use. Expect to only use them for private reference, as they simply point to the tagged commit and do not contain any meta data.
+- Creating tags is straightforward
+    - From the VSC **Source Control** tab, open the git graph, right click on the desired commit, and select `Add tag`. You will have options for annotated or lightweight, and can specify the tag name and message (if annotated)
+    - Alternatively, you can create tags directly in Git
+        ```bash
+        # add annotated tag
+        $ git tag -a <tag_name> -m '<message>' <commit_hash>
+        #         ^  ^          ^              ^ recommend 8 characters
+        #         |  |          | just like a 'git commit'
+        #         |  | tag name, such as 1.3.1
+        #         | indicates you want an annotated tag
+
+        # add lightweight tag
+        $ git tag <tag_name> <commit_hash>
+        ```
+        - If you want the tag to be at the current HEAD, you can omit the `<commit_hash>`
+- Like branches, tags are local unless explicitly pushed to a remote 
+    ```bash
+    $ git push <remote> <tag_name>  # push a tag to a remote, such as 'origin'
+    $ git push <remote> --tags      # push ALL tags to remote
+    ```
+    - Note `git push` alone does NOT transfer tags
+    - While `git fetch` and `git pull` do automatically retrieve tags
+- If you want to checkout the code as it was at a specific point in history, you can specify the commit hash or associated tag and check it out on a new branch. This will allow you to make and save changes on a new branch, starting from a historical version of code.
+    ```bash
+    $ git checkout -b <new_branch> <commit_hash>
+    $ git checkout -b <new_branch> <tag_name>
+    ```
+    - You can se how tags are convenient in this regard
+    - If instead, you are just interested in browsing, you can skip the creation of a new branch. This will create what's called a "detached HEAD" state. More on that [below](#detached-head)
+        ```bash
+        $ git checkout <hash_or_tag>
+        ```
+- If for some reason, you wish to delete a tag (use with caution)
+    ```bash
+    $ git push --delete <remote> <tag_name>
+    $ git push -d <remote> <tag_name>
+    ```
+- Other potentially useful commands related to tags
+    ```bash
+    # list tags
+    $ git tag
+    $ git tag --list
+    $ git tag -l
+
+    # list tags with regex beginning with 'v2'
+    $ git tag -l 'v2*'  # beginning with 'v2'
+    $ git tag -l '*v2'  # ending with 'v2'
+    $ git tag -l '*v2*' # containing 'v2'
+    #                ^ wildcard character
+    
+    # list tags with annotations
+    $ git tag -l -n
+    ```
+---
+## Detached HEAD
+From https://gitimmersion.com/
+> A “detached HEAD” message in git just means that HEAD (the part of git that tracks what your current working directory should match) is pointing directly to a commit rather than a branch. Any changes that are committed in this state are only remembered as long as you don’t switch to a different branch. As soon as you checkout a new branch or tag, the detached commits will be “lost” (because HEAD has moved). If you want to save commits done in a detached state, you need to create a branch to remember the commits.
+
+- As we saw earlier, this occurs when you `git checkout` a specific tag or commit and do not create a new branch. It's like working on an unnamed branch
+- You can make commits in a detached HEAD state; however, once you navigate away, there is no easy way to return to these detached commits
+    - New commits will not belong to any branch
+- Detached commits will be deleted by Git's garbage collection in about 2 weeks
+- If you find you have created detached commits, and have not navigated away, you can save your work in a couple of ways
+    - Tag the detached commit
+        ```bash
+        $ git tag <tag_name>    # note this is a lightweight tag, meant for local use only
+        ```
+    - Create a branch for the detached commits
+        ```bash
+        $ git checkout -b <branch_name>
+        ```
 ---
 ## Merge Conflicts
 Merging and conflicts are a common part of the Git experience. Conflicts generally arise when two people have changed the same lines in a file, or if the same file was modified on both branches involved in the merge. Luckily, resolving a merge conflict is often straightforward. Let's get familiar with solving merge conflicts by purposefully creating a conflict in this next section, and solving it three different ways.
@@ -196,7 +224,7 @@ For questions regarding versioning, refer to this guide on [Semantic Versioning]
         0.1.0 --> 0.2.0.dev0 --> 0.2.0.dev1 --> 0.2.0 --> 0.2.1
         ``` 
 
-Version releases are achieved by the use of "tags." Tags can be created in GitHub, or with the `git tag` command. I'll leave it to you to explore more on this front.
+Version releases are achieved by the use of "tags." Tags can be created in GitHub, or with the `git tag` command.
 - Note that once tags are created, we can reference them quite easily. Similar to how we can reference PRs, Issues, and individual commit hashes.
 
 ---

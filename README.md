@@ -2,7 +2,7 @@
 
 # Training Tutorials
 
-Use this repo to play around with Git and GitHub and to better understand what each command is really doing. I walk through beginner setup activities, as well as more advanced tools we use in the lab.
+Use this repo to play around with Git and GitHub and to better understand what each command is really doing. I walk through beginner setup activities, as well as more advanced tools we use in the lab. Note that while complexity / difficulty generally increases from beginner to advanced, not everything in the advanced section is difficult. The organization is based on what I believe to be the most efficient learning order for new developers. For example, setting up SSH is simple, but unnecessary in many cases.  
 
 ## [Beginner Sections](./modules/beginner.md)
 - [Introduction to Git and GitHub](./modules/beginner.md#introduction)

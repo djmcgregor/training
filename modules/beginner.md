@@ -213,6 +213,11 @@ As you walk though this practice session, frequently check the git log or git gr
     - Maybe you want to try adding another commit after the PR has been opened. Notice how it is added to the already opened PR.
     - On the far right, you can add reviewers and assign people responsible for the PR.
 0. When you are done exploring, go ahead and merge the PR into `main` and delete the `practice` branch via the GitHub interface
+    - GitHub will present three options for merging
+        - `Create a merge commit` is what you want for now. It will simply merge the `practice` branch into the `main` branch.
+        - I advise a more thorough understanding of Git before using either of the other two options. They are destructive methods and difficult to recover from. We will cover them in the [advanced modules](./advanced.md).
+        - `Squash and merge` will condense all commits into one commit, and then merge (use with caution)
+        - `Rebase and merge` will pickup all `practice` branch commits and rewrite them onto the tip of the `main` branch (use with caution)
     - In Git, run some commands to explore what is needed when you have updates to the remote
         ```bash
         $ git checkout main
