@@ -16,18 +16,16 @@
     - git subtree
     - git submodule
 
-TODO: explain squash? [example](https://gitbetter.substack.com/p/how-to-squash-git-commits#:~:text=Git%20squash%20is%20a%20technique%20that%20helps%20you,it%20to%20a%20small%20number%20of%20meaningful%20commits.)
-TODO: explain git commands each further. Perhaps some practice demos. Deleting remote branches?
-TODO: code organization and `__init__.py`
-
 ---
 ## Git Commands
 By now, you can probably look into Git commands on your own. Some useful commands to get familiar with include
 ```bash
 $ git rebase
 $ git reset
-# git squash
+$ git squash
 ```
+Useful [link](https://gitbetter.substack.com/p/how-to-squash-git-commits) for `git squash`.
+
 ---
 ## Underscores in Python
 In Python, the underscore `_` has four primary uses. You can read more [online](https://hackernoon.com/understanding-the-underscore-of-python-309d1a029edc).
@@ -49,7 +47,31 @@ In Python, the underscore `_` has four primary uses. You can read more [online](
 ---
 ## Code Organization
 
-#### More on `__init__.py`
+When organizing your Python package code, consider how functions will be used by other functions. Try to organize functions into "tiers" or groups so as to avoid circular dependencies. For example, if `function_a` in `fila_a.py` imports `function_b` from `file_bc.py`, any function in `file_bc.py` cannot import any function from `file_a.py`. I find it useful to group basic functions that rely only on standard imports such as `numpy`. Then I group higher complexity functions by similarities and dependencies.
+
+This brings us the the `__init__.py` file. What is it and how to use it? First, I must point out that the `__init__.py` file is no longer required as of Python 3.3; however, you should still use it. Historically, the `__init__.py` file identified directories that should be treated as packages. This works even if the `__init__.py` file is completely empty. The benefit comes in when you include information in the `__init__.py` file, such as function names that you want to be easily called.
+
+This repo contains an example at [../learning/examples/_\_init__.py](../learning/examples/__init__.py). 
+```python
+from <file> import <functions>
+
+__all__ = [
+    '<function1>',
+    '<function2>',
+]
+```
+The first line allows you to import the specified functions from the parent package.
+```python 
+from examples import add # points to `examples` package and imports `add` function
+```
+The `__all__` function is optional, but allows users to import all listed functions
+```python 
+from examples import *
+```
+Maintaining a clean and up to date `__init__.py` file will also help you and future users navigate and keep track of all the package functions.
+
+One file note about the `__init__.py` file at the top level directory. While the top directory may only contain packages, aka other folders, you can include namespace variables in the `__init__.py` file since it is the first file to execute. For example, in [../learning/_\_init__.py](../learning/__init__.py) I introduce the package and define the package version.
+
 
 ---
 ## Virtual Environment
@@ -179,7 +201,7 @@ In this repo, there is an example GitHub Actions workflow [YAML file](../.github
         Results of all tests and summary of code coverage (number of lines found, number of lines not covered explicitly by tests, and % coverage). Take this with a grain of salt, as % coverage is not the ultimate guide to good code. 100% coverage can still have bad code if the tests are poorly designed. But in general, it is a good guide / sanity check.
 0. Adding a badge
     - If you want to add a status badge for your GitHub workflow, you can follow this [guide](https://docs.github.com/en/actions/managing-workflow-runs/adding-a-workflow-status-badge)
-    - See this repo's [`README.md`](../README.md) for an example
+    - See this repo's [README.md](../README.md) for an example
 
 #### Testing
 When we first write code, most of us also quickly write up some basic test cases to make sure things are working. Saving these test cases as "unit tests" can save you some time down the road.
@@ -190,8 +212,8 @@ When we first write code, most of us also quickly write up some basic test cases
 
 1. Setup
     - I prefer to store my tests in a separate `tests/` folder at the root of my project, but there are arguments for distributing tests within your code
-    - I have included a sample test as an example under [`tests/test_mistakes.py`](../tests/test_mistakes.py)
-    - The `__init__.py` file is needed for import reasons
+    - I have included a sample test as an example under [../tests/test_examples.py](../tests/test_examples.py)
+    - The `__init__.py` file is included for import reasons
 0. Naming convention
     - It is common to use `pytest` to run your test suite. You can discover more about `pytest` in the [docs](https://docs.pytest.org/en/stable/contents.html)
     - `pytest` discovers tests according to the [conventions for Python test discovery](https://docs.pytest.org/en/stable/goodpractices.html#test-discovery)
@@ -281,8 +303,8 @@ Code is typically packaged in order to be conveniently accessible to other proje
 #### pip install
 Projects that are being packaged must have a `setup.py` file at the root of the directory. This file contains information for installing the package on your machine, as well as package metadata. When the package is published publicly, it also serves as the communication point for [PyPi](https://pypi.org/), which hosts public python packages that can be installed using `pip`.
 - For information on packaging, see this [guide](https://packaging.python.org/guides/distributing-packages-using-setuptools/) and this [tutorial](https://python-packaging.readthedocs.io/en/latest/minimal.html)
-- I have included a simple [`setup.py`](../setup.py) file for this tutorial repo that will get you started
-    - I like to only store the `__version__` number in the base [`__init__.py`](../learning/__init__.py) file. This way, there is only one line to update whenever a new version is released. There are a few lines of code to pull this value from the `__init__.py` file into the `setup.py` file
+- I have included a simple [setup.py](../setup.py) file for this tutorial repo that will get you started
+    - I like to only store the `__version__` number in the base [_\_init__.py](../learning/__init__.py) file. This way, there is only one line to update whenever a new version is released. There are a few lines of code to pull this value from the `__init__.py` file into the `setup.py` file
     - The project `name` parameter is what people will use to `pip install`, while the `packages` parameter is what people will `import` in their python code
         - These two do not need to be identical (e.g. opencv-python and cv2, or scikit-image and skimage), but having different names could lead to user confusion. I recommend you keep things simple
         - In this training example, I went the confusing route to demonstrate the possibility. My project name is `TrainingTutorials` while the package name is `learning`, meaning the functions can be imported under the name `learning`
